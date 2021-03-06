@@ -1,0 +1,253 @@
+screens:
+  translations:
+    icon: ic_baseline_language
+    secured: true
+    style: |
+      .page.translations [v-edit] { padding: 6px;border: var(--border);background: white; }
+      .page.translations .board .line.first-line .cell::before { right: 0; }
+      .page.translations .board .line .cell:first-child { max-width: 200px; }
+      .page.translations .board .line .cell > div { text-align: unset;align-items: unset;max-height: 100px;width: 100%;overflow: auto; }
+      .page.translations .search-wrapper { width: 500px; }
+      .page.translations .search :matches(svg:last-child, .suggestion) { display: none; }
+      .page.translations .board { overflow: hidden; }
+      .page.translations .board [tt]:hover::after { display: none; }
+      .tick_img::after { display: block;width: 40px;height:40px;content: url("data:image/svg+xml;utf8,<svg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 52 52' width='16pt' height='16pt' style='enable-background:new 0 0 52 52;' xml:space='preserve'><g><path fill='%2328ae71' d='M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M40.495,17.329l-16,18 C24.101,35.772,23.552,36,22.999,36c-0.439,0-0.88-0.144-1.249-0.438l-10-8c-0.862-0.689-1.002-1.948-0.312-2.811 c0.689-0.863,1.949-1.003,2.811-0.313l8.517,6.813l14.739-16.581c0.732-0.826,1.998-0.9,2.823-0.166 C41.154,15.239,41.229,16.503,40.495,17.329z'/></g></svg>"); }
+      .warning_img::after { display: block;width: 40px;height:40px;content: url("data:image/svg+xml;utf8,<svg height='16pt' viewBox='0 0 512 512' width='16pt' xmlns='http://www.w3.org/2000/svg'><path d='m433.347656 512.921875h-352.898437c-27.71875-.003906-53.460938-14.355469-68.039063-37.9375-14.574218-23.578125-15.902344-53.023437-3.511718-77.820313l176.433593-352.914062c13.542969-27.117188 41.253907-44.25 71.566407-44.25s58.023437 17.132812 71.566406 44.25l176.433594 352.914062c12.390624 24.796876 11.0625 54.242188-3.511719 77.820313-14.574219 23.582031-40.320313 37.933594-68.039063 37.9375zm0 0' fill='%23ffb931'/><g fill='%23fff'><path d='m256.898438 128.203125c8.835937 0 16 7.164063 16 16v192c0 8.835937-7.164063 16-16 16-8.835938 0-16-7.164063-16-16v-192c0-8.835937 7.164062-16 16-16zm0 0'/><path d='m240.898438 384.203125h32v32h-32zm0 0'/></g></svg>"); }
+      .error_img::after { display: block;width: 40px;height:40px;content: url("data:image/svg+xml;utf8,<svg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 52 52' width='16pt' height='16pt' style='enable-background:new 0 0 52 52;' xml:space='preserve'><path fill='%23cc1c3a' d='M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M38.5,28h-25c-1.104,0-2-0.896-2-2 s0.896-2,2-2h25c1.104,0,2,0.896,2,2S39.604,28,38.5,28z'/></svg>"); }
+    template: |
+      h1 {{ t[$root.screen.path] }}
+        search(style="margin-left: auto;" :data="[]")
+      block
+        form(@submit.prevent="set('config.translation.en.' + $event.target.children[0].children[0].value.join('underscore'), '-');$event.target.children[0].children[0].value = '';")
+          label(style="padding-left: 12px;") New translation:
+            input(style="margin-left: 4px;" @input="window.document.querySelector('.search input').value = $event.target.value.join('underscore');search = $event.target.value.join('underscore')")
+            button Create
+        board(:data="filtered_translations" :metadata="{ sort: ['key'], columns: ['key'].concat($root.config.translation.keys()) }")
+          template(:slot="'cell-' + lang" slot-scope="{ column, line }" v-for="lang in $root.config.translation.keys()")
+            div(v-edit="['config', 'translation', column, line.key].join('.')")
+    mixin: |
+      {
+        data() {
+          return {
+            search: $root.query.search || '',
+          }
+        },
+        computed: {
+          translations() {
+            const ignore = [
+              ['asset_class', 'country', 'underlying_country', 'currency', 'underlying_currency', 'maturity', 'cap_size', 'rating', 'sector', 'underlying_sector', 'subsector', 'region', 'debt_type', 'years_to_maturity', 'energy', 'materials', 'industrials', 'consumer_discretionary', 'consumer_staples', 'health_care', 'financials', 'technology', 'telecommunication', 'utilities', 'real_estate', 'media', 'personal_&_household_goods', 'retail', 'financial_services', 'telecommunications', 'industrial_goods_&_services', 'travel_&_leisure', 'construction_&_materials', 'food_&_beverage', 'oil_&_gas', 'banks', 'insurance', 'basic_resources', 'chemicals', 'automobiles_&_parts', 'nan', 'misc', 'micro_cap', 'small_cap', 'mid_cap', 'large_cap', 'mega_cap', 'cash', 'convertible', 'diversified', 'bond', 'equity', 'convertibles', 'future', 'option', 'warrant', 'warranty', 'unexplained', 'other', 'cat', 'fx', 'fx_rate_hedge', 'AU', 'AE', 'AT', 'BE', 'BM', 'KY', 'CN', 'DK', 'FI', 'FR', 'DE', 'GR', 'HK', 'HU', 'IN', 'IT', 'JP', 'LU', 'MY', 'MX', 'NL', 'NO', 'PH', 'PT', 'RU', 'SG', 'ZA', 'ES', 'SE', 'CH', 'TW', 'TH', 'GB', 'US', 'JE', 'CY', 'IE', 'europe', 'asia_ex_japan', 'japan', 'other_markets'],
+              ['login', 'logout', 'email', 'password', 'forgot_password', 'reset_password', 'expired_password', 'expired_password_message', 'reset', 'enter', 'save', 'access', 'lang', 'search', 'screenshare', 'export_pdf', 'export_screen', 'export_excel', 'export_csv', 'profile', 'period', 'period_benchmark', 'benchmark_id', 'pea', 'fund_currency', 'all_time', 'last_date', 'on_last_day', 'on_period', 'default', 'date', 'show', 'hide', 'download', 'metric', 'delta', 'sensitaux', 'expo', 'yield', 'theme', 'publish', 'other', 'rest', 'french_version', 'english_version', 'welcome', 'anonymous', 'user', 'name', 'top', 'last', 'active_filters', 'advanced_filters', 'filters', 'reset_filters', 'submit', 'download_in_progress', 'disclaimer', 'characteristics', 'legal_status', 'settlement', 'valuation', 'years', 'daily', 'weekly', 'depositary', 'classification', 'category', 'isin_code', 'bloomberg_code', 'amf_classification', 'by', 'from', 'to', 'asof', 'expand_period', 'retract_period', 'unknown_error', 'invalid_grant', 'too_many_attempts', 'missing_fields', 'export_table', 'fund_inception', 'unit_inception', 'horizon', 'cutoff', 'initial_charge', 'management_fee', 'redemption_fee', 'performance_fee', 'yes', 'no', 'data-quality', 'data-audit', 'translations', 'manager', 'management_company', 'origin', 'business_information', 'yield_indicators', 'management_comment', 'comment', 'key_figures', 'look_through', 'look_through_structure', 'management_objective', 'description', 'expert_focus', 'subscription_fee', 'share_name', 'feeder', 'eligibility', 'abonnement', 'legal_notices', 'global_esg', 'line_count', 'profile_esg', 'carbon_print', 'share_id', 'dqc_extract', 'dqc_input', 'dqc_output', 'dqc_pre', 'ignore', 'accounting', 'referential', 'analytics', 'errors', 'warnings', 'no_issues', 'updated', 'past_errors', 'label', 'delete_not_allowed', 'delete_confirmation', 'published_version', 'retrieved_version', '1m', '3m', '6m', '1y', '3y', '5y', '8y', '3y_yearly', '5y_yearly', '8y_yearly', 'wtd', 'mtd', 'ytd'],
+            ].flat()
+            const t = $root.db.config.translation
+            const keys = t.en.keys().filter(k => !ignore.includes(k) && t.en[k])
+            return keys.map(k => ({ key: k, langs: t.map(l => l[k]) }))
+          },
+          filtered_translations() {
+            return this.translations.filter(d => [d.key].concat(d.langs.v()).some(v => v && v.toLowerCase().includes((this.search || '').toLowerCase())))
+          },
+        },
+        created() {
+          addEventListener('search', e => this.search = e.detail || '')
+        },
+      }
+  data-quality:
+    icon: playlist_add_check
+    secured: true
+    style: |
+      .kpi:matches(.active, :hover) { cursor: pointer;border-color: var(--highlight); }
+      .top-button .button { width: 300px;cursor: pointer; }
+      .code-block { padding: 8px; }
+      .code-block .column:first-child { min-width: 75%;max-width: 400px; }
+      .code-block .column:first-child code {
+        min-width: 100%;
+        white-space: pre;
+        font-size: 0.9em;
+        border-left: 4px solid;
+        overflow-y:auto;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      .code-block .column:first-child input { border-top: none;border-top-left-radius: 0;border-top-right-radius: 0; }
+      .code-block .column:nth-child(2) { min-width: 25%;padding: 8px; }
+      .code-block .column:nth-child(2) div { padding: 4px; }
+      .code-block .column:nth-child(2) button { width: 100px; }
+      span.ok { color: var(--positive)!important;margin-right: 4px; }
+      span.warning { color: var(--cat1)!important;margin-right: 4px; }
+      span.error, .kpi .value { color: var(--negative)!important;margin-right: 4px; }
+      span.ignored { color: var(--inactive)!important;margin-right: 4px; }
+      span.ignored .button { margin-left: 4px;padding: 2px 4px;font-size: 12px; }
+      .code-block.error .column:first-child code { border-left-color: var(--negative); }
+      .code-block.warning .column:first-child code { border-left-color: var(--cat1);  }
+      .code-block.ignored .column:first-child code { border-left-color: var(--inactive); }
+      .board .line  .cell:first-child { align-items: start; }
+      .tick_img::after { content: url("data:image/svg+xml;utf8,<svg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 52 52' width='16pt' height='16pt' style='enable-background:new 0 0 52 52;' xml:space='preserve'><g><path fill='%2328ae71' d='M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M40.495,17.329l-16,18 C24.101,35.772,23.552,36,22.999,36c-0.439,0-0.88-0.144-1.249-0.438l-10-8c-0.862-0.689-1.002-1.948-0.312-2.811 c0.689-0.863,1.949-1.003,2.811-0.313l8.517,6.813l14.739-16.581c0.732-0.826,1.998-0.9,2.823-0.166 C41.154,15.239,41.229,16.503,40.495,17.329z'/></g></svg>"); }
+      .warning_img::after { content: url("data:image/svg+xml;utf8,<svg height='16pt' viewBox='0 0 512 512' width='16pt' xmlns='http://www.w3.org/2000/svg'><path d='m433.347656 512.921875h-352.898437c-27.71875-.003906-53.460938-14.355469-68.039063-37.9375-14.574218-23.578125-15.902344-53.023437-3.511718-77.820313l176.433593-352.914062c13.542969-27.117188 41.253907-44.25 71.566407-44.25s58.023437 17.132812 71.566406 44.25l176.433594 352.914062c12.390624 24.796876 11.0625 54.242188-3.511719 77.820313-14.574219 23.582031-40.320313 37.933594-68.039063 37.9375zm0 0' fill='%23ffb931'/><g fill='%23fff'><path d='m256.898438 128.203125c8.835937 0 16 7.164063 16 16v192c0 8.835937-7.164063 16-16 16-8.835938 0-16-7.164063-16-16v-192c0-8.835937 7.164062-16 16-16zm0 0'/><path d='m240.898438 384.203125h32v32h-32zm0 0'/></g></svg>"); }
+      .error_img::after { content: url("data:image/svg+xml;utf8,<svg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 52 52' width='16pt' height='16pt' style='enable-background:new 0 0 52 52;' xml:space='preserve'><path fill='%23cc1c3a' d='M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M38.5,28h-25c-1.104,0-2-0.896-2-2 s0.896-2,2-2h25c1.104,0,2,0.896,2,2S39.604,28,38.5,28z'/></svg>"); }
+    template: |
+      h1 {{ t[$root.screen.path] }}
+      .row.stretch
+        kpi(v-for="category in $root.db['data-quality'].keys().filter(d => d != 'sla')" :class="{ active: ($root.query.category || '').includes(category) }" @click.native="update_filter('category', category)" :data="[{ title: category, value: '' + checks.filter(d => d.category === category).map(d => d.error_number + d.warning_number).sum() || '<div class=\"tick_img\"><div>' }]")
+      block
+        board(:data="checks.filter(d => !$root.query.category || $root.query.category.split('|').includes(d.category)).sort('category')" :metadata="{ expand: 'name', sort: 'result', desc: true, columns: ['label', 'category', 'result'] }")
+          template(slot="cell-category" slot-scope="s")
+            div {{ (t[s.line.category] || 'missing test').titleize() }}
+          template(slot="cell-label" slot-scope="s")
+            div {{ s.line.label }}
+            span.ok(v-if="s.line.error_number + s.line.warning_number === 0") {{ t.no_issues }}
+            span.warning(v-if="s.line.warning_number") {{ s.line.warning_number }} {{ t.warnings }}
+            span.error(v-if="s.line.error_number") {{ s.line.error_number }} {{ t.errors }}
+            span.ignored(v-if="s.line.messages.length - (s.line.error_number + s.line.warning_number)") {{ (s.line.messages.length - (s.line.error_number + s.line.warning_number)) }} {{ t.past_errors }}
+              span.button(@click.prevent.stop="update_query({ hidden: $root.query.hidden ? null : true })") {{ !$root.query.hidden ? t.hide : t.show }}
+          template(slot="cell-result" slot-scope="s")
+            div
+              .tick_img(style="height: 18px;margin-top: 4px;" v-if="s.line.result === 0")
+              .warning_img(style="height: 18px;margin-top: 4px;" v-if="s.line.result === -1")
+              .error_img(style="height: 18px;margin-top: 4px;" v-if="s.line.result === -2")
+          template(slot="expand" slot-scope="s")
+            block(v-if="(s.line.error_number + s.line.warning_number !==  0) || !$root.query.hidden && s.line.messages.length >0")
+              h2 Errors & warnings
+              .row.code-block(v-for="e in s.line.messages" v-if="!e.ignore || !$root.query.hidden" :class="[e.type, { ignored: e.ignore }]")
+                .column
+                  code {{ e.message }}
+                  input(:value="get_comment(e.message)" @change="update_comment(e.message, $event.target.value)" @click.stop="" v-if="e.ignore" placeholder="Comment")
+                .column
+                  div(v-if="e.ignore")
+                    h4 {{ t.updated +':' }}
+                    div {{ $root.db['data-quality-ignored'][e.message.md5()].name }}
+                    div {{ ($root.db['data-quality-ignored'][e.message.md5()].date) }}
+                  button(@click.prevent.stop="window.navigator.clipboard.writeText(e.message)") {{ t.copy_to_clipboard }}
+                  button(@click.prevent.stop="ignore_toggle(e.message)" :style="{ background: 'var(--' + (e.ignore ? 'inactive' : 'primary') +')'}") {{ e.ignore ? t.reset : t.ignore }}
+    mixin: |
+      {
+        methods: {
+          update_comment(message, comment){
+            set('data-quality-ignored.' + message.md5() + '.comment',comment || null)
+          },
+          get_comment(message){
+            return get('data-quality-ignored.' + message.md5()).comment
+          },
+          ignore_toggle(message){
+            const hash = message.md5()
+            const ignored_list = $root.db['data-quality-ignored'] || {}
+            const value = ignored_list[hash] ? null : { hash, name: JSON.parse(localStorage.profile).name, date: new Date().format('YYYY-MM-DD hh:mm') }
+            set('data-quality-ignored.' + hash, value)
+          },
+        },
+        computed: {
+          checks() {
+            const ignore_list = $root.db['data-quality-ignored'] || {}
+            const is_ignored = message => !!ignore_list[message.md5()]
+            return $root.db['data-quality'].filter((d,k) => k !== 'sla').map((d, category) => d.v().map(t => (t.category = category, t))).v().flatten().group('name').v().map(grp => {
+              const messages = grp
+                .filter(d => d.error_output || d.warning_output)
+                .map(d => {
+                  const message = (d.error_output || d.warning_output).join('\n')
+                  return {
+                    type: d.error_output ? 'error': 'warning',
+                    message,
+                    ignore: is_ignored(message),
+                  }
+                })
+              const error_number = messages.filter(d => d.type === 'error' && !d.ignore).v().length
+              const warning_number = messages.filter(d => d.type === 'warning' && !d.ignore).v().length
+              return {
+                name: grp[0].name,
+                label: grp[0].description,
+                category: grp[0].category,
+                messages,
+                error_number,
+                warning_number,
+                result: error_number + warning_number === 0 ? 0 : error_number === 0 ? -1 : -2,
+              }
+            })
+          },
+        },
+      }
+  data-audit:
+    icon: pt-icon-database
+    secured: true
+    style: |
+      .autocomplete {position: absolute; right:20px;}
+      .spreadsheet { max-height: 30vh!important;}
+      .sheet { flex: 1; }
+      .row .label { display: flex; flex: 1;align-items: center;justify-content: center; }
+      .row select { display: flex; flex: 2; }
+      .ghost { margin-left: 12px!important; }
+      .search { font-size: 16px;font-weight: 400; }
+    template: |
+      h1 {{ t[$root.screen.path] }}
+      block(title="filters")
+        .row
+          .label Fund
+          select(:value="fund" @change="update_query({ fund: $event.target.value, share: null })")
+            option(v-for="userflow in $root.db.userflows.keys()") {{ userflow }}
+          .label Share
+          select(:value="share" @change="update_query({ share: $event.target.value })")
+            option(v-for="share in $root.db.userflows[fund].shares.keys()") {{ share }}
+          .label Dataset
+          select(:value="$root.query.dataset || 'mapping'" @change="update_query({ dataset: $event.target.value })")
+            option(v-for="url, dataset in urls") {{ dataset }}
+      block(:title="$root.t['visualisation'] || 'Visualisation'" v-if="data")
+        template(slot="title")
+          .row
+            a.ghost(:href="url + '&project=' + localStorage.PROJECT + '&auth0_token=' + localStorage.id_token" tt="Export")
+              svg-icon(name="pt-icon-export" v-if="$root.query.dataset !=='userflow'")
+          input.search(v-model="simple_filter" v-if="['mapping', undefined].includes($root.query.dataset)")
+        //TODO Create good Daviz for userflow
+        spreadsheet(:data="data.filter(d => d.v().some(v => typeof(v) === 'string' && v.toLowerCase().includes(this.simple_filter.toLowerCase())))" :options="{ filter: x => x, sort: ['-date', '-name'] }")
+      block(:title="$root.t['visualisation'] || 'Visualisation'" v-else)
+        .row
+          div.center {{ 'Visit this page to download data {}-{}/overview:'.format(fund, share) }}
+          button(style="margin-left: 15px;" @click="$root.$router.push('/{}-{}/overview?app=default'.format(fund, share))") {{ t.acess || 'access' }}
+      block(title="nxpack_information" v-if="['mapping', undefined].includes($root.query.dataset)")
+        spreadsheet(:data="nxpack")
+    mixin: |
+      {
+        data() {
+          return {
+            data: [],
+            simple_filter: '',
+          }
+        },
+        computed: {
+          fund(){
+            return $root.query.fund || $root.db.userflows.keys()[0]
+          },
+          share(){
+            return $root.query.share || $root.db.userflows[this.fund].shares.keys()[0]
+          },
+          urls() {
+            const fund = $root.query.fund || $root.db.userflows.keys()[0]
+            const share = $root.query.share || $root.db.userflows[fund].shares.keys()[0]
+            const userflow = fund + '-' + share
+            const datasets = $root.db.config.datasets.map(ds => eval(ds.url_fn)({ query: {}, params: { userflow }})[0] ).reduce((acc, v, k) => { if (!acc.find(v)) acc[k] = v;return acc }, {})
+            datasets['userflow'] = {...$root.db.userflows[fund].filter((d,k) => k !== 'shares'), ...$root.db.userflows[fund].shares[share]}
+            return datasets
+          },
+          url() {
+            return this.urls[$root.query.dataset || 'mapping']
+          },
+          nxpack() {
+            return $root.db.nxpack.map((v,k) => ({'dataset': k,
+                                                'filename': v['file_name'],
+                                                'integration_date': v['date_integration'],
+                                                'time_integration': v['time_integration']}))
+                                .v()
+          }
+        },
+        watch: {
+          'url': {
+            handler() {
+              if($root.query.dataset === 'userflow'){
+                this.data = [this.url]
+              }
+              else {
+                idb.get('xcache.' + this.url).then(r => {
+                  this.data = r
+                })
+              }
+            },
+            immediate: true,
+          },
+        },
+      }

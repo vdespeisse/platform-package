@@ -1,0 +1,110 @@
+# Dimensions
+asset_class: Classe d'actif
+country: Pays
+underlying_country: Pays du sous-jacent
+currency: Devise
+underlying_currency: Devise du sous-jacent
+maturity: Maturité
+cap_size: Capitalisations
+rating: Notation
+sector: Secteur
+underlying_sector: Secteur du sous-jacent
+subsector: Sous-Secteur
+region: Region
+debt_type: Stratégie
+years_to_maturity: Maturité
+# Sector GICS
+energy: Énergie|Éner.
+materials: Matériaux|Mat.
+industrials: Industrie|Indus.
+consumer_discretionary: Conso. Dis.|Cons Dis
+consumer_staples: Conso. Base|Cons Base
+health_care: Santé
+financials: Finance|Fin.
+technology: Technologie|Tech.
+telecommunication: Télécommunication|Télécom
+utilities: Services|Serv.
+real_estate: Immobilier|Immo.
+# Sector ICB
+media: Medias
+personal_&_household_goods: Produits Ménagers|Mén.
+retail: Distribution|Dist.
+financial_services: Finance|Fin.
+telecommunications: Télécommunications|Télécom
+industrial_goods_&_services: Industrie|Indus.
+travel_&_leisure: Voyage & Loisirs|Voy.
+construction_&_materials: Construction|Constr.
+food_&_beverage: Alimentaire|Alim.
+oil_&_gas: Pétrole & Gaz|Pét.
+banks: Banques|Banq.
+insurance: Assurance|Assu.
+basic_resources: Matières Premières|Mat.
+chemicals: Chemicals|Chem.
+automobiles_&_parts: Automobiles|Auto.
+nan: Autre
+misc: Divers
+# Cap size
+micro_cap: Micro Cap|Micro
+small_cap: Small Cap|Small
+mid_cap: Mid Cap|Mid
+large_cap: Large Cap|Large
+mega_cap: Mega Cap|Mega
+# Asset Class
+fx_rate_hedge: Couverture Change|FX
+fx: Change|FX
+cat: Change à Terme|FX
+convertible: Convertible|CONV
+diversified: Diversifié|DIV
+cash: Cash|CASH
+bond: Obligations|BOND
+equity: Actions|EQY
+convertibles: Convertibles
+future: Futures|FUT
+option: Options|OPT
+warrant: Bon d'Options|WRNT
+warranty: Garantie|WTY
+unexplained: Unexplained|UNX
+other: Autre|OTH
+# Country
+AU: Australie|AU
+AE: Émirats Arabes Unis|AE
+AT: Autriche|AT
+BE: Belgique|BE
+BM: Bermudes|BM
+KY: Caïmanes|KY
+CN: Chine|CN
+DK: Danemark|DK
+FI: Finlande|FI
+FR: France|FR
+DE: Allemagne|DE
+GR: Grèce|GR
+HK: Hong Kong|HK
+HU: Hongrie|HU
+IN: Inde|IN
+IT: Italie|IT
+JP: Japon|JP
+LU: Luxembourg|LU
+MY: Malaisie|MY
+MX: Mexique|MX
+NL: Pays-Bas|NL
+NO: Norvège|NO
+PH: Philippines|PH
+PT: Portugal|PT
+RU: Russie|RU
+SG: Singapour|SG
+ZA: Afrique du Sud|ZA
+ES: Espagne|ES
+SE: Suède|SE
+CH: Suisse|CH
+TW: Taïwan|TW
+TH: Thaïlande|TH
+GB: Royaume-Uni|GB
+US: États-Unis|US
+JE: Jersey|JE
+CY: Chypre|CY
+IE: Irlande|IE
+# Regions
+europe: Europe|EU
+asia_ex_japan: Asie hors Japon|Asie ex Jpn
+japan: Japon|JP
+other_markets: Autres Marchés|Other

@@ -1,0 +1,64 @@
+<style>
+.nav-bottom .user-menu { z-index: 1;position: relative;background: var(--nav-bottom-background-accent);transition: var(--transition);transform: translateY(0); color: var(--nav-bottom-color); max-height: var(--nav-menu-height);}
+.nav-bottom .user-menu.retract { transform: translateY(calc(50px - 100%)); }
+.nav-bottom .user-menu.retract .user > svg { transform: rotate(90deg); }
+.nav-bottom .user-menu .user .notification { position: absolute;top: 1px;left: 42px;cursor: pointer;width: 20px;height: 20px;padding: 0;border: none;color: white;background: red;border-radius: 20px;font-size: 12px;font-weight: 800;justify-content: center;text-align: center; }
+.nav-bottom .user { display: flex;padding: 0 16px;background: var(--nav-bottom-background);border: none;}
+.nav-bottom .user > div { width: 40px;height: 40px;background-color: #444;background-position: center center;background-repeat: no-repeat;background-size: cover;border-radius: 50%; }
+.nav-bottom .user > svg { margin-left: auto;padding: 3px;border-radius: 50%;transition: var(--transition);fill: var(--nav-bottom-color);transform: rotate(-90deg); }
+.nav-bottom .link-lang { display: flex;flex-wrap: wrap;min-height: fit-content;padding: 0;background: inherit!important;border: none; }
+.nav-bottom .link-lang > div { display: flex;flex: 1;align-items: center;justify-content: center;height: 100%; }
+.nav-bottom .link-lang > div.active { background: var(--text);border-top: 4px solid var(--highlight); }
+.nav-bottom .link-lang > div:hover { cursor: pointer;background: rgb(255, 255, 255, 0.2); }
+.nav-bottom .link-lang svg { margin-right: 4px; }
+</style>
+
+<template lang="pug">
+.user-menu(:class='{ retract: !$root.retract_user }', @click.stop='')
+  a.user(@click='$root.retract_user = !$root.retract_user')
+    div(:style='$root.profile && $root.profile.picture && `background-image: url(${$root.profile.picture})`')
+    a.notification(@click.stop="$router.push({ path: '/advanced/data-quality'})", v-if='data_quality_badge') {{ data_quality_badge }}
+    span(style='max-width: 130px;')
+      | {{ $root.profile && $root.profile.nickname && $root.profile.nickname.replace(/@.*/, '').titleize() }}
+    svg-icon(name='nx-chevron')
+  // <a class="notification" @click="$router.push({ path: '/advanced/data-quality'})">1</a>
+  .lang
+    label  {{ t.lang }}
+    select#lang.dark(:value='$root.lang', @change='$root.lang = $event.target.value')
+      option(:value='lang', v-for='lang in $root.db.config.translation.keys()')  {{ lang.toUpperCase() }}
+  template(v-if='$root.db.keys().filter(k => /^config/.test(k)).length > 1 && $root.db.keys().filter(k => /^config/.test(k)).length <= 2')
+    a(@click="$root.app = app;$router.push('/')", v-for="app in $root.db.keys().filter(k => /^config/.test(k) && k !== ['config', $root.app].filter().join('-')).map(k => k.replace(/^config-?/, ''))")
+      svg-icon(name='ic_swap_horiz')
+      span {{ (t[app] || app).titleize() || 'Digital Edition' }}
+  template(v-if="localStorage.PROJECT === 'caceis' && localStorage.DH")
+    a(:href="localStorage.DH.replace('webservices', 'abor') + '/smartplanet.jnlp'")
+      svg-icon(name='ic_swap_horiz')
+      span ABOR
+  template(v-if="$root.role === 'admin'")
+    router-link(:class='{ exact: $route.params.screen === screen.path, [screen.path]: true }', :to="'/advanced/' + screen.path", v-for='screen in $root.config.screens.filter(d => d.secured)')
+      svg-icon(:name='screen.icon')
+      span {{ t[screen.path] }}
+  // <a class="link-support">Support</a>
+  a.link-logout(@click="$root.app = '';window.logout()")
+    svg-icon(name='ic_exit_to_app')
+    span {{ t.logout }}
+  a.link-powered(href='https://www.neoxam.com/', target='_blank')
+    svg(viewBox='0 0 85 15', xmlns='http://www.w3.org/2000/svg')
+      path(d='M0.5 3V8.5H2V13L5.5 7H3.5L5.5 3H0.5Z', fill='#FFDD44')
+      path(d='M14.026 6.18C13.126 6.18 12.46 6.528 12.016 7.062V3.36H11.038V12H12.016V11.238C12.46 11.772 13.126 12.12 14.026 12.12C15.622 12.12 16.876 10.872 16.876 9.15C16.876 7.428 15.622 6.18 14.026 6.18ZM13.912 7.104C15.076 7.104 15.868 8.016 15.868 9.15C15.868 10.284 15.094 11.202 13.912 11.202C12.76 11.202 11.956 10.32 11.956 9.15C11.956 7.986 12.76 7.104 13.912 7.104ZM23.6008 6.3H22.5208L20.5708 9.804L18.5188 6.3H17.4208L20.0188 10.782L17.9128 14.43H18.9988L23.6008 6.3Z', fill='white')
+      path(d='M32.9493 4.00056L30.9559 2L29.686 3.26959L32.9493 6.53206L36.2126 3.26959L34.9427 2L32.9493 4.00056Z', fill='#0ED8B8')
+      path(d='M32.9493 11.8951L34.9427 13.8957L36.2126 12.6261L32.9493 9.36362L29.686 12.6261L30.9559 13.8957L32.9493 11.8951Z', fill='#0ED8B8')
+      path(d='M36.8976 7.94786L38.8986 5.95499L37.6287 4.68539L34.3655 7.94786L37.6287 11.2103L38.8986 9.94073L36.8976 7.94786Z', fill='#0ED8B8')
+      path(d='M29.0011 7.94786L27 9.94073L28.2699 11.2103L31.5332 7.94786L28.2699 4.68539L27 5.95499L29.0011 7.94786Z', fill='white')
+      path(d='M48.2266 9.18664L44.1938 3.87744H42.7083V11.8259H44.2937L44.3015 6.51665L48.3344 11.8259H49.8198V3.87744H48.2266V9.18664Z', fill='white')
+      path(d='M53.3756 6.1781C51.7286 6.1781 50.5895 7.35536 50.5895 9.09431C50.5895 10.8256 51.7594 11.9721 53.4449 11.9721C54.3684 11.9721 55.1688 11.7104 55.7922 11.1411L54.9226 10.1792C54.5223 10.5178 54.0066 10.7102 53.5296 10.7102C52.8291 10.7102 52.275 10.3639 52.1133 9.57138H56.0154C56.0308 9.44826 56.0462 9.24051 56.0462 9.07123C56.0385 7.35536 54.9611 6.1781 53.3756 6.1781ZM52.1211 8.5557C52.2519 7.8709 52.6598 7.45539 53.3602 7.45539C53.999 7.45539 54.4222 7.85551 54.5607 8.5557H52.1211Z', fill='white')
+      path(d='M59.5558 6.1781C57.8472 6.1781 56.5849 7.41692 56.5849 9.07124C56.5849 10.7255 57.8472 11.9644 59.5558 11.9644C61.2721 11.9644 62.5342 10.7255 62.5342 9.07124C62.542 7.41692 61.2721 6.1781 59.5558 6.1781ZM59.5558 10.5871C58.7246 10.5871 58.0934 9.9638 58.0934 9.07124C58.0934 8.17868 58.7168 7.55541 59.5558 7.55541C60.3869 7.55541 61.0181 8.17868 61.0181 9.07124C61.0181 9.9638 60.3947 10.5871 59.5558 10.5871Z', fill='white')
+      path(d='M69.615 3.87744H67.7832L66.0284 6.60129L64.2736 3.87744H62.4111L65.0509 7.78624L62.3419 11.8259H64.1659L66.0054 8.99428L67.8294 11.8259H69.6842L66.9674 7.78624L69.615 3.87744Z', fill='white')
+      path(d='M73.6478 6.93217C73.2861 6.48588 72.755 6.1781 72.0009 6.1781C70.4846 6.1781 69.3379 7.42461 69.3379 9.07124C69.3379 10.7255 70.4846 11.9644 72.0009 11.9644C72.755 11.9644 73.2939 11.6566 73.6478 11.218V11.8259H75.0947V6.3243H73.6478V6.93217ZM72.2702 10.5871C71.4006 10.5871 70.8541 9.90994 70.8541 9.07124C70.8541 8.23253 71.4082 7.55541 72.2702 7.55541C73.1167 7.55541 73.6864 8.20175 73.6864 9.07124C73.6864 9.94072 73.1167 10.5871 72.2702 10.5871Z', fill='white')
+      path(d='M82.8296 6.1781C82.1062 6.1781 81.3904 6.42433 80.9594 7.11683C80.59 6.53205 79.9358 6.1781 79.1431 6.1781C78.5196 6.1781 77.9194 6.38585 77.5269 6.97063V6.3243H76.0876V11.8259H77.573V8.80962C77.573 7.97861 78.104 7.56312 78.7352 7.56312C79.4124 7.56312 79.8049 8.0017 79.8049 8.79424V11.8182H81.2904V8.80192C81.2904 7.97092 81.8214 7.55541 82.4525 7.55541C83.1221 7.55541 83.5223 7.994 83.5223 8.78653V11.8105H85V8.30948C85 7.04758 84.1226 6.1781 82.8296 6.1781Z', fill='white')
+</template>
+
+<script>
+export const additions = {"props":["data_quality_badge"]}
+export default {}
+</script>

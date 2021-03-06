@@ -1,0 +1,69 @@
+:root { --standard-curve: cubic-bezier(.4, 0, .2, 1); }
+
+.fade-enter, .fade-leave { opacity: 0; }
+.fade-enter-active, .fade-leave-active { opacity: 1;transition: var(--transition); }
+
+@keyframes placeholder { from { background-position: 100% 0; } to { background-position: -100% 0; }}
+.image-loading {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeholder;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 200% 100%;
+  position: relative;
+}
+.flash {
+  position: relative;
+  z-index: 100;
+  animation: flash .75s infinite alternate;
+}
+.flash-color {
+  position: relative;
+  z-index: 100;
+  animation: flash-color .75s infinite alternate;
+}
+@keyframes flash-color {
+  from {
+    color: inherit;
+    fill: inherit;
+  }
+  to {
+    color: var(--highlight-1);
+    fill: var(--highlight-1);
+  }
+}
+@keyframes flash {
+  from {
+    box-shadow: none;
+  }
+  to {
+    box-shadow: 0 8px 10px 1px rgb(255, 221, 0, .22), 0 3px 14px 2px rgb(255, 221, 0, .18), 0 5px 5px -3px rgb(255, 221, 0, .3);
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.slide-top-enter-active { animation: enter-top .3s var(--standard-curve); }
+.slide-top-leave-active { animation: leave-top .3s var(--standard-curve); }
+.slide-right-enter-active { animation: enter-right .3s var(--standard-curve); }
+.slide-right-leave-active { animation: leave-right .3s var(--standard-curve); }
+.slide-bottom-enter-active { animation: enter-bottom .3s var(--standard-curve); }
+.slide-bottom-leave-active { animation: leave-bottom .3s var(--standard-curve); }
+.slide-left-enter-active { animation: enter-left .3s var(--standard-curve); }
+.slide-left-leave-active { animation: leave-left .3s var(--standard-curve); }
+@keyframes enter-top { from { transform: translateY(-100%); }}
+@keyframes leave-top { to { transform: translateY(-100%); }}
+@keyframes enter-right { from { transform: translateX(100%); }}
+@keyframes leave-right { to { transform: translateX(100%); }}
+@keyframes enter-bottom { from { transform: translateY(100%); }}
+@keyframes leave-bottom { to { transform: translateY(100%); }}
+@keyframes enter-left { from { transform: translateX(-100%); }}
+@keyframes leave-left { to { transform: translateX(-100%); }}

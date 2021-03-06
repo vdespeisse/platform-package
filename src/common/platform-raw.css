@@ -1,0 +1,52 @@
+:root {
+  --font-family: MarkPro;
+  --background: #f5f5f5;
+  --cat1: #ffb931;
+  --cat10: #7fa0f4;
+  --cat2: #f55a3a;
+  --cat3: #cc1c3a;
+  --cat4: #169889;
+  --cat5: #28ae71;
+  --cat6: #a1de66;
+  --cat7: #7eeb89;
+  --cat8: #55dec1;
+  --cat9: #92e5f7;
+  --h1: 800 32px/1 var(--font-family);
+  --h2: 600 24px/1 var(--font-family);
+  --h3: 400 20px/1 var(--font-family);
+  --highlight: #fd5;
+  --inactive: #b4bac6;
+  --negative: #cc1c3a;
+  --p1: 400 16px/1.4 var(--font-family);
+  --p2: 400 14px/1.4 var(--font-family);
+  --p3: 400 12px/1.4 var(--font-family);
+  --p4: 400 10px/1.4 var(--font-family);
+  --positive: #28ae71;
+  --primary: #0ed8b8;
+  --secondary: #444;
+  --text: #222;
+  --text-dark: #1a1a1a;
+  --border: 1px solid var(--inactive);
+  --border-radius: 4px;
+  --box-shadow: 0px 2px 4px rgb(0, 0, 0, 0.2);
+  --transition: all .3s cubic-bezier(.4,0,.2,1);
+}
+
+body { font: var(--p1); }
+h1 { font: var(--h1); }
+h2 { font: var(--h2); }
+h3 { font: var(--h3); }
+.wrap { flex-wrap: wrap; }
+.expand { flex: 1; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+a { color: inherit;font-weight: normal; }
+a:hover, a:focus { text-decoration: none; }
+.link { color: #05f;text-decoration: underline; }
+.button { display: flex;align-items: center;justify-content: center; }
+.primary { --active: var(--primary-dark);--hover: var(--primary-dark);--input: var(--primary);color: white!important; }
+button[aria-label] { display: flex;align-items: center;justify-content: center;width: 40px;padding: 12px; }
+img { max-height: 100%; }
+/* [tt] { position: relative;overflow: visible; }
+[tt]:hover::after { z-index: 1;position: absolute;top: 0;left: 50%;pointer-events: none;overflow: hidden;display: -webkit-box;max-width: max-content;width: 384px;padding: 4px 8px;color: var(--background);background: var(--text);border-radius: 3px;line-height: 1.5;font-size: 11px;font-weight: 600;-webkit-box-orient: vertical;-webkit-line-clamp: 3;word-break: break-word;content: attr(tt);transform: translate(-50%, calc(-100% - 8px)); } */
+#tooltip { z-index: 10000;position: absolute;top: -10000px;pointer-events: none;overflow: hidden;display: -webkit-box;max-width: max-content;width: 384px;padding: 4px 8px;color: var(--background);background: var(--text);border-radius: 3px;line-height: 1.5;font-size: 11px;font-weight: 600;-webkit-box-orient: vertical;-webkit-line-clamp: 3;word-break: break-word;transform: translate(-50%, calc(-100% - 8px)); }

@@ -1,0 +1,13 @@
+screens:
+  login:
+    style: |
+      /**/.splashscreen::before { position: absolute;top: calc(50% - 110px);opacity: 0.5;width: 10000px;height: 220px;background: var(--primary);content: " ";transform: rotate(-32deg); }
+      /**/.login .title { display: none; }
+      /**/.login .logo { max-height: 50%; }
+      /**/.login,
+      /**/.welcome { display: flex;flex-direction: column;align-items: center;justify-content: center; }
+      /**/.login .welcome { position: relative;max-width: calc(100% - 40px);max-height: calc(100% - 40px);width: 450px;height: 600px;margin: 0 auto;padding: 60px;background: #fff;box-shadow: 0 15.5px 17px 3px rgb(55, 59, 67, 0.08);font: var(--h3);text-align: center; }
+      /**/.login p { margin: 20px 0; }
+      /**/.login button { padding: 12px 16px; }
+      /**/.login .lang { position: absolute;top: 20px;right: 20px;cursor: pointer;width: 24px;padding: 0; }
+      /**/.login .link-powered { position: fixed;right: 20px;bottom: 20px;width: 100px; }

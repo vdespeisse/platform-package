@@ -1,0 +1,157 @@
+# Interface
+login: Login
+logout: Logout
+email: Email
+password: Password
+forgot_password: Forgot password
+reset_password: Reset password
+expired_password: Expired password
+expired_password_message: Your password is older than 90 days, you need to reset it. Click to receive an email with a password reset link
+reset: Reset
+enter: Enter
+save: Save
+cancel: Cancel
+access: Access
+lang: Language
+search: Search
+screenshare: Screenshare
+export_pdf: PDF Export
+export_screen: Screen Export
+export_excel: Excel Export
+export_csv: CSV Export
+profile: Profile
+period: Period
+period_benchmark: Benchmark Period
+benchmark_id: Benchmark ID
+pea: PEA
+fund_currency: Fund currency
+all_time: All Time
+last_date: Last Date
+on_last_day: On last day
+on_period: On period
+default: Default
+date: Date
+show: Show
+hide: Hide
+download: Download
+metric: Metrics
+delta: Delta
+sensitaux: Rate Sensitivity
+expo: Exposure
+yield: Return rate
+theme: Themes
+publish: Publish
+other: Other
+others: Others
+rest: Rest
+french_version: French Version
+english_version: English Version
+welcome: Welcome
+anonymous: Anonymous
+user: User
+name: Name
+top: Top
+last: Last
+active_filters: Active filters
+advanced_filters: Advanced filters
+filters: Filters
+reset_filters: Reset filters
+submit: Submit
+download_in_progress: Load In Progress
+disclaimer: Disclaimer
+characteristics: Characteristics
+legal_status: Legal Status
+settlement: Settlement
+valuation: Valuation
+years: Years
+daily: Daily
+weekly: Weekly
+depositary: Depositary
+classification: Classification
+category: Category
+isin_code: ISIN Code
+bloomberg_code: Bloomberg Code
+amf_classification: AMF Classification
+by: by
+from: From
+to: To
+asof: As of
+expand_period: Expand date selection
+retract_period: Retract date selection
+unknown_error: Unexpected issue.
+invalid_grant: Wrong email or password.
+too_many_attempts: Too many attempts.
+missing_fields: Missing email or password.
+export_table: Export table
+fund_inception: Fund inception
+unit_inception: share inception
+horizon: Horizon
+cutoff: Cut-Off
+initial_charge: Initial charge
+management_fee: Management Fee
+redemption_fee: Redemption Fee
+performance_fee: Performance Fee
+yes: Yes
+no: No
+data-quality: Data Quality
+data-audit: Data Audit
+translations: Translations
+manager: Manager
+management_company: Management compagny
+origin: Origin
+# PDF Title
+business_information: Business information
+yield_indicators: Yield indicators
+management_comment: Management comment
+comment: Management comment
+key_figures: Keys figures
+look_through: Look-through
+look_through_structure: Fund structure
+management_objective: Management objective
+subscription_fee: Subscription fee
+share_name: Share name
+feeder: Feeder
+eligibility: Eligibility
+abonnement: Abonnement
+legal_notices: Legal Notices
+global_esg: Global ESG rating
+line_count: Line count
+profile_esg: ESG Profile
+carbon_print: Carbon footprint
+share_id: ISIN Code
+# Data quality
+dqc_extract: Data Extraction checks
+dqc_input: Raw data quality checks
+dqc_output: Computed data quality checks
+dqc_pre: Pre integration quality assessment
+ignore: Ignore
+accounting: Accounting data
+referential: Referential data
+analytics: Analytics data
+errors: Errors
+warnings: Warnings
+no_issues: No issues
+updated: Updated
+past_errors: past errors
+label: Description
+# Messages
+delete_not_allowed: Can not delete the selected item.
+delete_confirmation: Do you really want to remove the selected items ?
+published_version: Version published
+retrieved_version: Version retrieved
+# Period
+1m: 1 month
+3m: 3 months
+6m: 6 months
+1y: 1 year
+3y: 3 years
+5y: 5 years
+8y: 8 years
+3y_yearly: 3 years yoy
+5y_yearly: 5 years yoy
+8y_yearly: 8 years yoy
+wtd: WTD
+mtd: MTD
+ytd: YTD
+blank: ' '
+copy_to_clipboard: Copy

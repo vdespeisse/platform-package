@@ -1,0 +1,110 @@
+# Dimensions
+asset_class: Asset Class
+country: Country
+underlying_country: Underlying country
+currency: Currency
+underlying_currency: Underlying_currency
+maturity: Maturity
+cap_size: Cap Size
+rating: Rating
+sector: Sector
+underlying_sector: Underlying sector
+subsector: Subsector
+region: Area
+debt_type: Strategy
+years_to_maturity: Maturity
+# Sector GICS
+energy: Energy|Ener.
+materials: Materials|Mat.
+industrials: Industrials|Indus.
+consumer_discretionary: Cons. Dis.|Cons Dis
+consumer_staples: Cons. Staples|Cons Staples
+health_care: Health Care|Health
+financials: Financials|Fin.
+technology: Technology|Tech.
+telecommunication: Telecommunication|Telecom
+utilities: Utilities|Util.
+real_estate: Real Estate|R.E.
+# Sector ICB
+media: Media
+personal_&_household_goods: Household Goods|Goods
+retail: Retail|Ret.
+financial_services: Financials|Fin.
+telecommunications: Telecommunications|Telecom
+industrial_goods_&_services: Industrials|Indus.
+travel_&_leisure: Travel & Leisure|Travel
+construction_&_materials: Construction|Constr.
+food_&_beverage: Food & Beverage|Food
+oil_&_gas: Oil & Gas|Oil
+banks: Banks
+insurance: Insurance|Ins.
+basic_resources: Basic Resources|Res.
+chemicals: Chemicals|Chem.
+automobiles_&_parts: Automobiles & Parts|Auto.
+nan: Other
+misc: Misc.
+# Cap size
+micro_cap: Micro Cap|Micro
+small_cap: Small Cap|Small
+mid_cap: Mid Cap|Mid
+large_cap: Large Cap|Large
+mega_cap: Mega Cap|Mega
+# Asset Class
+cash: Cash|CASH
+convertible: Convertible|CONV
+diversified: Diversified|DIV
+bond: Bonds|BOND
+equity: Equities|EQY
+convertibles: Convertibles
+future: Futures|FUT
+option: Options|OPT
+warrant: Warrant|WRNT
+warranty: Warranty|WTY
+unexplained: Unexplained|UNX
+other: Other|OTH
+cat: FX Forward|FX
+fx: FX
+fx_rate_hedge: FX Hedging|FX
+# Country
+AU: Australia|AU
+AE: United Arab Emirates|AE
+AT: Austria|AT
+BE: Belgium|BE
+BM: Bermuda|BM
+KY: Cayman Islands|KY
+CN: China|CN
+DK: Denmark|DK
+FI: Finland|FI
+FR: France|FR
+DE: Germany|DE
+GR: Greece|GR
+HK: Hong Kong|HK
+HU: Hungary|HU
+IN: India|IN
+IT: Italy|IT
+JP: Japan|JP
+LU: Luxembourg|LU
+MY: Malaysia|MY
+MX: Mexico|MX
+NL: Netherlands|NL
+NO: Norway|NO
+PH: Philippines|PH
+PT: Portugal|PT
+RU: Russian Federation|RU
+SG: Singapore|SG
+ZA: South Africa|ZA
+ES: Spain|ES
+SE: Sweden|SE
+CH: Switzerland|CH
+TW: Taiwan|TW
+TH: Thailand|TH
+GB: United Kingdom|GB
+US: United States|US
+JE: Jersey|JE
+CY: Cyprus|CY
+IE: Ireland|IE
+# Regions
+europe: Europe|EU
+asia_ex_japan: Asia ex Japan|Asia ex Jpn
+japan: Japan|JP
+other_markets: Other Markets|Other

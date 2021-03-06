@@ -1,0 +1,158 @@
+# Interface
+login_message: Veuillez vous connecter
+login: Connexion
+logout: Déconnexion
+email: Email
+password: Mot de passe
+forgot_password: Mot de passe oublié
+reset_password: Réinitialiser
+expired_password: Mot de passe expiré
+expired_password_message: Votre mot de passe date de plus de 90 jours, vous devez le mettre à jour. Cliquez pour recevoir un email de mise à jour.
+reset: Reset
+enter: Entrez
+save: Enregistrer
+cancel: Annuler
+access: Accès
+lang: Langue
+search: Recherche
+screenshare: Partage d'écran
+export_pdf: Export PDF
+export_screen: Export d'Écran
+export_excel: Export Excel
+export_csv: Export CSV
+profile: Profil
+period: Période
+period_benchmark: Période Indice
+benchmark_id: Indice
+pea: PEA
+fund_currency: Devise
+all_time: Toute la période
+last_date: Dernière Date
+on_last_day: Au dernier jour
+on_period: Sur la période
+default: Défaut
+date: Date
+show: Afficher
+hide: Masquer
+download: Télécharger
+metric: Métriques
+delta: Delta
+sensitaux: Sensibilité Taux
+yield: Taux de Rendement
+expo: Exposition
+theme: Thématiques
+publish: Publier
+other: Autre
+others: Autres
+rest: Reste
+french_version: Version Française
+english_version: Version Anglaise
+welcome: Bonjour
+anonymous: Anonyme
+user: Utilisateur
+name: Nom
+top: Top
+last: Last
+active_filters: Filtres Actifs
+advanced_filters: Filtres Avancées
+filters: Filtres
+reset_filters: Reset filtres
+submit: Valider
+download_in_progress: Chargement en cours
+disclaimer: Avertissement
+characteristics: Caractéristiques
+legal_status: Forme juridique
+settlement: Règlement
+valuation: Valorisation
+years: Ans
+daily: Quotidienne
+weekly: Hebdomadaire
+depositary: Dépositaire
+classification: Classification
+category: Catégorie
+isin_code: Code ISIN
+bloomberg_code: Code Bloomberg
+amf_classification: Classification AMF
+by: par
+from: Du
+to: Au
+asof: Au
+expand_period: Étendre la selection de date
+retract_period: Rétracter la selection de date
+unknown_error: Erreur innatendue.
+invalid_grant: Mauvais Email ou Mot de Passe.
+too_many_attempts: Trop de tentatives.
+missing_fields: Email ou Mot de Passe Manquant.
+export_table: Exporter la table
+fund_inception: Création du fonds
+unit_inception: Création de la part
+cutoff: Centralisation des ordres
+initial_charge: Frais de souscription
+management_fee: Frais de gestion
+redemption_fee: Frais de rachat
+performance_fee: Commission de surperformance
+horizon: Horizon
+yes: Oui
+no: Non
+data-quality: Data Quality
+data-audit: Data Audit
+translations: Traductions
+manager: Gérant
+management_company: Société de gestion
+origin: Origine
+# PDF Title
+business_information: Informations Commerciales
+yield_indicators: Analyse des rendements
+management_comment: Commentaire de gestion
+comment: Commentaire de gestion
+key_figures: Chiffres Clés
+look_through: Transparisation
+look_through_structure: Structure du portefeuille
+management_objective: Objectif de gestion
+subscription_fee: Frais de souscription
+share_name: Nom de la part
+feeder: Nourricier
+eligibility: Eligibilité
+abonnement: Abonnement
+legal_notices: Mentions Légales
+global_esg: Note ESG globale
+line_count: Nombre de lignes
+profile_esg: Profil ESG
+carbon_print: Empreinte carbone
+share_id: Code ISIN
+# Data quality
+dqc_extract: Extraction des données
+dqc_input: Qualité de la donnée brut
+dqc_output: Qualité de la donnée calculée
+dqc_pre: Vérifications pré-integration de la donnée
+ignore: Ignorer
+accounting: Données comptables
+referential: Données référentiel
+analytics: Données analytique
+errors: Erreurs
+warnings: Alertes
+no_issues: Aucune alertes
+updated: Mise à jour
+past_errors: erreurs passées
+label: Description
+# Messages
+delete_not_allowed: Impossible de supprimer l'élément sélectionné.
+delete_confirmation: Confirmez vous la suppression de l'éléments selectionné ?
+published_version: Version publiée
+retrieved_version: Version récupérée
+# Period
+1m: 1 mois
+3m: 3 mois
+6m: 6 mois
+1y: 1 an
+3y: 3 ans
+5y: 5 ans
+8y: 8 ans
+3y_yearly: 3 years anual.
+5y_yearly: 5 years anual.
+8y_yearly: 8 years anual.
+wtd: WTD
+mtd: MTD
+ytd: YTD
+blank: ' '
+copy_to_clipboard: Copier

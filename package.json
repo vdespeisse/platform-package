@@ -1,0 +1,20 @@
+{
+  "name": "platform-package",
+  "version": "1.0.0",
+  "description": "Neoxam platform common features",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup --config rollup.config.js",
+    "dev": "MODE=dev rollup --config rollup.config.js && node ./dist/test.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-dynamic-import-vars": "^1.1.1",
+    "@rollup/plugin-yaml": "^3.0.0"
+  },
+  "dependencies": {
+    "vue": "^3.0.5"
+  }
+}
